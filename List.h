@@ -62,7 +62,7 @@ namespace mystd {
 		class const_Iterator :public Iterator {
 		public:
 			const_Iterator() :Iterator() {}
-			const_Iterator(Node* p) :Iterator(p) {}//继承所有构造函数
+			explicit const_Iterator(Node* p) :Iterator(p) {}//继承所有构造函数
 			const_Iterator(const Iterator& rhs) :Iterator(rhs.pointer) {};
 			const_Iterator(Iterator&& rhs) :Iterator(rhs.pointer) {};//允许Iterator到const_Iterator的转换
 			~const_Iterator() = default;
@@ -110,7 +110,7 @@ namespace mystd {
 
 
 	private:
-		void __init__();
+		void __Init__();
 		Node* head = nullptr;
 		Node* tail = nullptr;//实际上是尾后指针，不存储值
 		size_type listSize = 0;
@@ -259,18 +259,18 @@ namespace mystd {
 
 	template<typename T>
 	List<T>::List() {
-		__init__();
+		__Init__();
 	}
 
 	template<typename T>
 	List<T>::List(const List& other){
-		__init__();
+		__Init__();
 		*this = other;
 	}
 
 	template<typename T>
 	List<T>::List(List&& other){
-		__init__();
+		__Init__();
 		*this = other;
 	}
 
@@ -528,7 +528,7 @@ namespace mystd {
 
 
 	template<typename T>
-	inline void List<T>::__init__(){
+	inline void List<T>::__Init__(){
 		Node* pNode = new Node;
 		head = pNode;
 		tail = pNode;
